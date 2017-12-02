@@ -13,16 +13,27 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'match.insert'(match) {
-    check(match, String);
+  'matches.insert'(match) {
+    check(match, Object);
 
-    // Make sure the user is logged in before inserting a task
+    // Make sure the user is logged in before inserting a match
     if (! this.userId) {
       throw new Meteor.Error('not-authorized');
     }
 
-    Match.insert({
-      match,
+    Matches.insert({
+      local: {
+        name: match.local,
+        points: 0
+      },
+      visit: {
+        name: match.visit,
+        points: 0
+      },
+      startingTime: match.startingTime,
+      endingTime: match.endingTime,
+      finished: false,
+      public: true,
       createdAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,

@@ -15,7 +15,7 @@ export default class MatchPreview extends Component {
     const local = this.props.match.local;
     const visit = this.props.match.visit;
     return (
-      <div className="match-preview">
+      <div className="center-align match-preview">
         <strong>{ local.name }</strong> { local.points } - { visit.points } <strong>{ visit.name }</strong>
       </div>
     );

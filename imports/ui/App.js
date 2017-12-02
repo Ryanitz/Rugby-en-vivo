@@ -17,7 +17,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    $(".button-collapse").sideNav();
+    $('.button-collapse').sideNav(
+      {
+        menuWidth: 300, // Default is 300
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true, // Choose whether you can drag to open on touch screens,
+      }
+    );
   }
 
   render() {
@@ -34,6 +41,18 @@ class App extends Component {
                 <li><a><AccountsUIWrapper /></a></li>
               </ul>
               <ul className="side-nav" id="mobile-demo">
+                {
+                  this.props.currentUser ? (
+                    <li><div className="user-view">
+                      <div className="background">
+                        <img src="http://materializecss.com/images/office.jpg" />
+                      </div>
+                      <a><img className="circle" src="http://materializecss.com/images/yuna.jpg" /></a>
+                      <a><span className="white-text name">{ this.props.currentUser.username }</span></a>
+                      <a><span className="white-text email">jdandturk@gmail.com</span></a>
+                    </div></li>
+                  ) : ('')
+                }
                 <li><a><AccountsUIWrapper /></a></li>
                 <li><Link to={'/Partidos'}>Partidos</Link></li>
                 <li><Link to={'/CrearPartido'}>Crear partido</Link></li>
@@ -54,7 +73,7 @@ class App extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('tasks');
+  Meteor.subscribe('matches');
 
   return {
     matches: Matches.find({}, { sort: { finished: false, createdAt: -1 } }).fetch(),

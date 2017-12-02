@@ -14,7 +14,7 @@ class MatchList extends Component {
       {
         this.props.matches.length > 0 ? (
           this.props.matches.map((match) =>
-            <MatchPreview match={ match } />
+            <MatchPreview key={match._id} match={ match } />
           )
         ) : (
           <div className="row">
