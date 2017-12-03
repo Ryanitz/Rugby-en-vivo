@@ -34,8 +34,7 @@ class CreateMatch extends Component {
         visit: this.state.visit,
         startingTime: document.getElementById("starting_time").value,
         endingTime: document.getElementById("ending_time").value,
-        finished: false,
-        public: true
+        public: true,
       };
 
       Meteor.call('matches.insert', match);

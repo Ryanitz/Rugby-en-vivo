@@ -14,14 +14,14 @@ class MatchList extends Component {
       {
         this.props.matches.length > 0 ? (
           this.props.matches.map((match) =>
-            <MatchPreview key={match._id} match={ match } />
+            <MatchPreview key={match._id} match={ match } user={this.props.user} />
           )
         ) : (
           <div className="row">
             <div className="col s12">
               <div className="card-panel indigo lighten-5 center-align hoverable flow-text">
                 <span className="grey-text darken-4">No hay partidos en este momento.</span>
-              </div>
+              </div>  
             </div>
           </div>
         )

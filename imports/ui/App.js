@@ -61,9 +61,9 @@ class App extends Component {
           </nav>
           <div className="container">
             <Switch>
-              <Route exact path='/Partidos' render={(props) => ( <MatchList matches={this.props.matches}/> )} />
+              <Route exact path='/Partidos' render={(props) => ( <MatchList user={this.props.currentUser} matches={this.props.matches}/> )} />
               <Route exact path='/CrearPartido' render={(props) => ( <CreateMatch user={this.props.currentUser}/> )} />
-              <Route render={(props) => ( <MatchList matches={this.props.matches}/> )} />
+              <Route render={(props) => ( <MatchList user={this.props.currentUser}  matches={this.props.matches}/> )} />
             </Switch>
           </div>
         </div>

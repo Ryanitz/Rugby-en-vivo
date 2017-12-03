@@ -1,5 +1,5 @@
 .match-preview {
-  margin: 5px 0;
+  margin: 10px auto;
 }
 p.match-preview-text {
   margin-top: 5px;
@@ -7,13 +7,25 @@ p.match-preview-text {
 }
 .match-preview-panel {
   padding: 5px;
-  margin: 5px !important;
+}
+.match-preview-panel .row {
+    margin-bottom: 0px;
 }
 .match-preview-expand .col .tabs {
   border-top: solid #607d8b 1px;
   background-color: transparent !important
 }
 
+.points_panel div {
+  padding: 2px !important;
+}
 .points_panel a {
-  margin: 2px;
+  margin: 3px 0 !important;
+}
+
+.match-preview-tabs {
+  background-color: transparent;
+}
+.event p {
+  margin: 0px;
 }

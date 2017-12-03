@@ -32,11 +32,60 @@ Meteor.methods({
       },
       startingTime: match.startingTime,
       endingTime: match.endingTime,
-      finished: false,
+      status: "not started",
+      timeline: [],
       public: true,
       createdAt: new Date(),
       owner: this.userId,
       username: Meteor.users.findOne(this.userId).username,
+    });
+  },
+  'matches.setStatus'(matchId, newStatus, newEvent) {
+    const match = Matches.findOne(matchId);
+    if (!match.public && match.owner !== this.userId) {
+      // If the task is private, make sure only the owner can check it off
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Matches.update(matchId, {
+      $set: {
+        status: newStatus,
+        timeline: match.timeline.concat(newEvent)
+      }
+    });
+  },
+  'matches.setPointsLocal'(matchId, newPoints, newEvent) {
+    const match = Matches.findOne(matchId);
+    if (!match.public && match.owner !== this.userId) {
+      // If the task is private, make sure only the owner can check it off
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Matches.update(matchId, {
+      $set: {
+        local: {
+          name: match.local.name,
+          points: newPoints
+        },
+        timeline: match.timeline.concat(newEvent)
+      }
+    });
+  },
+  'matches.setPointsVisit'(matchId, newPoints, newEvent) {
+    const match = Matches.findOne(matchId);
+    if (!match.public && match.owner !== this.userId) {
+      // If the task is private, make sure only the owner can check it off
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Matches.update(matchId, {
+      $set: {
+        visit: {
+          name: match.visit.name,
+          points: newPoints
+        },
+        timeline: match.timeline.concat(newEvent)
+      }
     });
   },
 });
