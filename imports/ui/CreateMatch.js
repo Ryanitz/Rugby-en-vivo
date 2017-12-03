@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import TimePicker from './TimePicker';
 
+import TimePicker from './TimePicker';
 import { Matches } from '../api/matches.js';
 
 class CreateMatch extends Component {
@@ -41,7 +42,7 @@ class CreateMatch extends Component {
 
       Materialize.toast('Partido creado!', 4000);
 
-      this.props.router.push('/Partidos');
+      window.location.pathname = "/Partidos";
     } else {
       Materialize.toast('Complete todos los campos', 4000);
     }
@@ -49,7 +50,7 @@ class CreateMatch extends Component {
 
   render() {
     return (
-      <div>
+      <Router>
         {
           !this.props.user ? (
             <div className="row">
@@ -61,7 +62,7 @@ class CreateMatch extends Component {
             </div>
           ) : (
             <div className="row">
-              <form className="col s12">
+              <form className="col s12" onSubmit={this.handleSubmit}>
                 <div className="row">
                   <div className="input-field col s12 m6">
                     <input id="local_team" value={this.state.local} onChange={this.handleChange} type="text" className="validate" />
@@ -84,9 +85,8 @@ class CreateMatch extends Component {
                 </div>
                 <div className="row">
                   <button
-                    to={'/Partidos'}
                     className="col s12 m3 offset-m9 btn waves-effect waves-light"
-                    onClick={this.handleSubmit}
+                    type="submit"
                   >
                     Crear partido<i className="material-icons right">send</i>
                   </button>
@@ -95,7 +95,7 @@ class CreateMatch extends Component {
             </div>
           )
         }
-      </div>
+      </Router>
     );
   }
 }

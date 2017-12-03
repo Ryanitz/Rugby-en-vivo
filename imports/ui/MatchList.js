@@ -10,7 +10,7 @@ class MatchList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="row">
       {
         this.props.matches.length > 0 ? (
           this.props.matches.map((match) =>

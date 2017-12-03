@@ -1,0 +1,19 @@
+.match-preview {
+  margin: 5px 0;
+}
+p.match-preview-text {
+  margin-top: 5px;
+  margin-bottom: 10px
+}
+.match-preview-panel {
+  padding: 5px;
+  margin: 5px !important;
+}
+.match-preview-expand .col .tabs {
+  border-top: solid #607d8b 1px;
+  background-color: transparent !important
+}
+
+.points_panel a {
+  margin: 2px;
+}
