@@ -13,14 +13,14 @@ class TimePicker extends Component {
       donetext: 'OK', // text for done-button
       cleartext: 'Borrar', // text for clear-button
       canceltext: 'Cancelar', // Text for cancel-button
-      autoclose: true, // automatic close timepicker
+      autoclose: false, // automatic close timepicker
       ampmclickable: true // make AM PM clickable
     });
   }
 
   render() {
     return (
-      <input id={ this.props.id } type="text" className="timepicker" />
+      <input id={ this.props.id } placeholder="Hora de inicio" type="text" className="timepicker" />
     );
   }
 }

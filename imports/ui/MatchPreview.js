@@ -51,7 +51,7 @@ export default class MatchPreview extends Component {
       <div id={match._id} className="match-preview col s12">
         <div className="match-preview-panel row card-panel indigo lighten-5 center-align hoverable">
           <span type="button" onClick={() => {this.toggleExpand()}} className="grey-text darken-4 col s12 left-align">
-            {match.startingTime}-{match.endingTime} ({status})
+            Inicio: {match.startingTime} ({status})
             <i className="material-icons grey-text darken-4 right">{viewIcon}</i>
           </span>
           <span className="grey-text darken-4 flow-text">

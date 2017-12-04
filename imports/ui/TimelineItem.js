@@ -8,6 +8,10 @@ class TimelineItem extends Component {
 
   convertTime() {
     let minutes = this.props.event.time - this.props.firstEvent.time;
+    if(minutes < 0) {
+      alert("Event: " + this.props.event.time);
+      alert("FistEvent: " + this.props.firstEvent.time);
+    }
     if(minutes > 40){
       return "40+" + (minutes - 40);
     }
@@ -26,12 +30,12 @@ class TimelineItem extends Component {
       }
       {
         event.actuate == "local" ? (
-          <p className="left-align">{event.action} {this.convertTime()}min</p>
+          <p className="left-align"><strong>{event.action}</strong> {this.convertTime() + "'"}</p>
         ) : ('')
       }
       {
         event.actuate == "visit" ? (
-          <p className="right-align">{this.convertTime()}min {event.action}</p>
+          <p className="right-align">{this.convertTime() + "'"} <strong>{event.action}</strong></p>
         ) : ('')
       }
       </div>

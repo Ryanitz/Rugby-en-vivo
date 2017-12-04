@@ -1,5 +1,9 @@
+.body {
+  margin-top: 5px;
+}
+
 .match-preview {
-  margin: 10px auto;
+  margin: 2px;
 }
 p.match-preview-text {
   margin-top: 5px;
@@ -7,6 +11,7 @@ p.match-preview-text {
 }
 .match-preview-panel {
   padding: 5px;
+  margin: 2px;
 }
 .match-preview-panel .row {
     margin-bottom: 0px;
@@ -28,4 +33,8 @@ p.match-preview-text {
 }
 .event p {
   margin: 0px;
+}
+
+.message {
+  padding: 20px !important;
 }

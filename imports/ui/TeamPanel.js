@@ -27,7 +27,7 @@ export default class TeamPanel extends Component {
       let translateStatus = this.currentStatus(newStatus);
 
       const date = new Date();
-      const time = this.addZero(date.getHours()) * 60 + this.addZero(date.getMinutes());
+      const time = date.getHours() * 60 + date.getMinutes();
 
       const newEvent = {
         id: this.props.match.timeline.length + 1,
@@ -51,7 +51,7 @@ export default class TeamPanel extends Component {
       });
 
       const date = new Date();
-      const time = this.addZero(date.getHours()) * 60 + this.addZero(date.getMinutes());
+      const time = date.getHours() * 60 + date.getMinutes();
 
       const newEvent = {
         id: this.props.match.timeline.length + 1,
@@ -71,12 +71,6 @@ export default class TeamPanel extends Component {
     }
   }
 
-  addZero(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-    return i;
-  }
   currentStatus(status) {
     switch(status) {
       case "not started":
@@ -139,7 +133,7 @@ export default class TeamPanel extends Component {
                   <a onClick={() => {this.updateMatch("Drop", 3, match.local.name, "local")}} className="col s12 waves-effect waves-light btn">Drop {match.local.name}</a>
                 </div>
                 <div className="visit-panel col s12 m6">
-                  <a onClick={() => {this.updateMatch("Try", 5, match.visit.name), "visit"}} className="col s12 waves-effect waves-light btn">Try {match.visit.name}</a>
+                  <a onClick={() => {this.updateMatch("Try", 5, match.visit.name, "visit")}} className="col s12 waves-effect waves-light btn">Try {match.visit.name}</a>
                   {
                     this.state.updateMatch == "Try " + match.visit.name ? (
                       <a onClick={() => {this.updateMatch("Conversion", 2, match.visit.name, "visit")}} className="col s12 waves-effect waves-light btn">Conversion {match.visit.name}</a>

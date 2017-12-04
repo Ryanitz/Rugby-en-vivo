@@ -7,7 +7,6 @@ import { Matches } from '../api/matches.js';
 import AccountsUIWrapper from './AccountsUIWrapper.js';
 
 import MatchList from './MatchList.js';
-import CreateMatch from './CreateMatch.js';
 
 // App component - represents the whole app
 class App extends Component {
@@ -59,10 +58,9 @@ class App extends Component {
               </ul>
             </div>
           </nav>
-          <div className="container">
+          <div className="container body">
             <Switch>
               <Route exact path='/Partidos' render={(props) => ( <MatchList user={this.props.currentUser} matches={this.props.matches}/> )} />
-              <Route exact path='/CrearPartido' render={(props) => ( <CreateMatch user={this.props.currentUser}/> )} />
               <Route render={(props) => ( <MatchList user={this.props.currentUser}  matches={this.props.matches}/> )} />
             </Switch>
           </div>
