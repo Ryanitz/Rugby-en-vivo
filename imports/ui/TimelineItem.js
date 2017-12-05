@@ -7,7 +7,7 @@ class TimelineItem extends Component {
   }
 
   convertTime() {
-    let minutes = this.props.event.time - this.props.firstEvent.time;
+    let minutes = this.props.event.time - this.props.timeEvent.time;
 
     if(minutes > 40){
       return "40+" + (minutes - 40);

@@ -32,7 +32,7 @@ Meteor.methods({
       },
       startingTime: match.startingTime,
       status: "not started",
-      finished: false,
+      state: null,
       timeline: [],
       public: true,
       createdAt: new Date(),

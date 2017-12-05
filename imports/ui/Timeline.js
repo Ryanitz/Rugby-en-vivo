@@ -9,16 +9,17 @@ class Timeline extends Component {
   }
 
   render() {
-    let eventNumber = 0;
-    let index = 0;
+    let timeEvent = this.props.timeline[0];
     return (
       <div className="row">
       {
         this.props.timeline.length > 0 ? (
           this.props.timeline.map((event) =>
             event.action !== "Entretiempo" ? (
-              event.action == "2do tiempo" ? (this.eventNumber = this.index) : this.index++,
-              <TimelineItem key={event.id} event={event} firstEvent={this.props.timeline[this.eventNumber]} />
+              event.action === "2do tiempo" ? (
+                timeEvent = event
+              ) : (''),
+              <TimelineItem key={event.id} event={event} timeEvent={timeEvent} />
             ) : ('')
           )
         ) : (
