@@ -68,12 +68,6 @@ class App extends Component {
                   <Account />
                 ) : ('Wrong page')
               }
-              {/*<Switch>
-                <Route exact path='/Partidos' render={(props) => ( <MatchList finished={false} user={this.props.currentUser} matches={this.props.matches}/> )} />
-                <Route exact path='/Finalizados' render={(props) => ( <MatchList finished={true} user={this.props.currentUser} matches={this.props.finished}/> )} />
-                <Route render={(props) => ( <MatchList user={this.props.currentUser}  matches={this.props.matches}/> )} />
-              </Switch>
-              */}
             </div>
           </div>
           <div className="bottom-nav">
