@@ -26,11 +26,11 @@ export default class ExpandTab extends Component {
       <div className="row">
         <div className="col s12">
           <ul className="match-preview-tabs tabs tabs-fixed-width">
-            <li className="tab col s3"><a className="active" href="#test1">Panel</a></li>
-            <li className="tab col s3"><a href="#test2">Timeline</a></li>
+            <li className="tab col s3"><a className="active" href={"#panel_" + match._id}>Panel</a></li>
+            <li className="tab col s3"><a href={"#timeline_" + match._id}>Timeline</a></li>
           </ul>
         </div>
-        <div id="test1" className="col s12">
+        <div id={"panel_" + match._id} className="col s12">
         {
           match.status !== 'finished' ? (
             <TeamPanel user={this.props.user} match={match}/>
@@ -45,7 +45,7 @@ export default class ExpandTab extends Component {
           )
         }
         </div>
-        <div id="test2" className="col s12">
+        <div id={"timeline_" + match._id} className="col s12">
         {
           match.status !== 'not started' ? (
             <Timeline timeline={match.timeline} />

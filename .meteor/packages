@@ -23,3 +23,6 @@ accounts-password
 meteortesting:mocha
 fourseven:scss
 materialize:materialize
+google-config-ui
+accounts-google
+tarang:ssl

@@ -32,6 +32,7 @@ Meteor.methods({
       },
       startingTime: match.startingTime,
       status: "not started",
+      finished: false,
       timeline: [],
       public: true,
       createdAt: new Date(),
@@ -49,6 +50,7 @@ Meteor.methods({
     Matches.update(matchId, {
       $set: {
         status: newStatus,
+        finished: (newStatus === "finished"),
         timeline: match.timeline.concat(newEvent)
       }
     });

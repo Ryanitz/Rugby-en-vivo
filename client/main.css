@@ -1,5 +1,29 @@
+.bottom-nav {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+}
+.fixed-color {
+  color: #0000008a;
+}
+
 .body {
-  margin-top: 5px;
+  height: calc(100vh - 112px);
+  overflow-y: auto;
+  padding-top: 5px;
+}
+.body .container .row-fixed {
+  margin-bottom: 5px;
+}
+
+.col {
+  margin-bottom: 0.5rem;
+}
+@media only screen and (min-width: 601px) {
+  .body {
+    height: calc(100vh - 120px) !important;
+  }
 }
 
 .match-preview {
@@ -29,10 +53,14 @@ p.match-preview-text {
 }
 
 .match-preview-tabs {
+  overflow: hidden;
   background-color: transparent;
 }
 .event p {
   margin: 0px;
+}
+.time-event {
+  border-top: solid 1px;
 }
 
 .message {

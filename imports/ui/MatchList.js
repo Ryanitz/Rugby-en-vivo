@@ -10,9 +10,8 @@ class MatchList extends Component {
   }
 
   render() {
-    console.log(this.props.matches.length);
     return (
-      <div className="row">
+      <div className="row row-fixed">
       {
         this.props.matches.length > 0 ? (
           this.props.matches.map((match) =>
@@ -24,7 +23,11 @@ class MatchList extends Component {
           </div>
         )
       }
-      <CreateMatchCard user={this.props.user} />
+      {
+        !this.props.finished ? (
+          <CreateMatchCard user={this.props.user} />
+        ) : ('')
+      }
       </div>
     );
   }

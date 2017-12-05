@@ -8,24 +8,32 @@ class TimelineItem extends Component {
 
   convertTime() {
     let minutes = this.props.event.time - this.props.firstEvent.time;
-    if(minutes < 0) {
-      alert("Event: " + this.props.event.time);
-      alert("FistEvent: " + this.props.firstEvent.time);
-    }
+
     if(minutes > 40){
       return "40+" + (minutes - 40);
     }
     return minutes;
   }
 
+  convertMinutes() {
+    let time = this.props.event.time;
+    let hours = Math.floor( time / 60);
+    let minutes = time % 60;
+    return hours + ":" + minutes;
+  }
+
   render() {
     let event = this.props.event;
-    // let time = this.convertTime();
+
     return (
       <div className="event col s12 grey-text darken-4">
       {
         event.actuate == "time" ? (
-          <p className="center-align"><hr/>{event.action}</p>
+          event.action == "Terminó el partido" ? (
+            <p className="time-event center-align">{event.action} ({this.convertMinutes()})</p>
+          ) : (
+            <p className="time-event center-align">{event.action}</p>
+          )
         ) : ('')
       }
       {

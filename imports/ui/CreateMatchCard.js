@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import TimePicker from './TimePicker.js';
-import AccountsUIWrapper from './AccountsUIWrapper.js';
+import AccountsUIWrapper from './accounts/AccountsUIWrapper.js';
 
 import { Matches } from '../api/matches.js';
 

@@ -9,6 +9,7 @@
     "bcrypt": "^1.0.3",
     "classnames": "^2.2.5",
     "indexof": "0.0.1",
+    "material-ui": "^0.20.0",
     "meteor-node-stubs": "^0.3.2",
     "rc-time-picker": "^3.2.1",
     "react": "^16.2.0",
