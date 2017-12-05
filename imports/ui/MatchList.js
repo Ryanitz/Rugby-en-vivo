@@ -19,15 +19,11 @@ class MatchList extends Component {
           )
         ) : (
           <div className="message col s12 card-panel indigo lighten-5 center-align hoverable flow-text">
-            <span className="grey-text darken-4">No hay partidos en este momento.</span>
+            <span className="grey-text darken-4">{this.props.text}</span>
           </div>
         )
       }
-      {
-        !this.props.finished ? (
-          <CreateMatchCard user={this.props.user} />
-        ) : ('')
-      }
+        <CreateMatchCard user={this.props.user} />
       </div>
     );
   }

@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { Matches } from '../api/matches.js';
 import AccountsUIWrapper from './accounts/AccountsUIWrapper.js';
 import MatchList from './MatchList.js';
 import Account from './accounts/Account.js';
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import FontIcon from 'material-ui/FontIcon';
 
-const finished = <FontIcon className="material-icons">flag</FontIcon>;
+const myMatches = <FontIcon className="material-icons">list</FontIcon>;
 const matches = <FontIcon className="material-icons">live_tv</FontIcon>;
 const user = <FontIcon className="material-icons">person</FontIcon>;
 
@@ -53,10 +53,7 @@ class App extends Component {
           <div className="navbar-fixed">
             <nav>
               <div className="nav-wrapper">
-                <a className="brand-logo">Logo</a>
-                <ul className="right hide-on-med-and-down">
-                  <li><Link to={'/Partidos'}>Partidos</Link></li>
-                </ul>
+                <a className="center brand-logo">Logo</a>
               </div>
             </nav>
           </div>
@@ -64,9 +61,9 @@ class App extends Component {
             <div className="container">
               {
                 this.state.selectedIndex === 0 ? (
-                  <MatchList finished={true} user={this.props.currentUser} matches={this.props.finished}/>
+                  <MatchList finished={true} text="No has creado ningún partido." user={this.props.currentUser} matches={this.props.myMatches}/>
                 ) : this.state.selectedIndex === 1 ? (
-                  <MatchList finished={false} user={this.props.currentUser} matches={this.props.matches}/>
+                  <MatchList finished={false} text="No hay partidos en este momento." user={this.props.currentUser} matches={this.props.matches}/>
                 ) : this.state.selectedIndex === 2 ? (
                   <Account />
                 ) : ('Wrong page')
@@ -84,12 +81,12 @@ class App extends Component {
               <Paper zDepth={1}>
                 <BottomNavigation selectedIndex={this.state.selectedIndex}>
                   <BottomNavigationItem
-                    label="Finalizados"
-                    icon={finished}
+                    label="MisPartidos"
+                    icon={myMatches}
                     onClick={
                       () => {
                         this.select(0);
-                        history.replaceState( {} , 'Finalizados', '/Finalizados' );
+                        history.replaceState( {} , 'Mis partidos', '/MisPartidos' );
                       }
                     }
                   />
@@ -127,8 +124,8 @@ export default withTracker(() => {
   Meteor.subscribe('matches');
 
   return {
-    finished: Matches.find({finished: true}, { sort: { createdAt: -1 } }).fetch(),
-    matches: Matches.find({finished: false}, { sort: { createdAt: -1 } }).fetch(),
     currentUser: Meteor.user(),
+    myMatches: Matches.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } }).fetch(),
+    matches: Matches.find({}, { sort: { createdAt: -1 } }).fetch(),
   };
 })(App);
