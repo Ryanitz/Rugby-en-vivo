@@ -37,7 +37,7 @@ export default class TeamPanel extends Component {
       };
 
       Meteor.call('matches.setStatus', this.props.match._id, newStatus, newEvent);
-      
+
       Materialize.toast(translateStatus, 4000);
     }
 

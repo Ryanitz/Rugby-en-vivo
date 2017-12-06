@@ -19,17 +19,9 @@ class Body extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selectedIndex: 1,
-      loading: false
-    };
   }
 
   componentWillMount() {
-    this.setState({
-      loading: true,
-    });
-
     if(window.location.pathname == "/MisPartidos") {
       this.setState({selectedIndex: 0});
     } else if(window.location.pathname == "/Cuenta") {
@@ -37,12 +29,6 @@ class Body extends Component {
     } else {
       this.setState({selectedIndex: 1});
     }
-  }
-
-  componentDidMount() {
-    this.setState({
-      loading: false,
-    });
   }
 
   select = (index) => this.setState({selectedIndex: index});
