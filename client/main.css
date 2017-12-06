@@ -9,9 +9,9 @@
 }
 
 .body {
-  height: calc(100vh - 112px);
   overflow-y: auto;
   padding-top: 5px;
+  margin-bottom: 56px;
 }
 .body .container .row-fixed {
   margin-bottom: 5px;
@@ -19,11 +19,6 @@
 
 .col {
   margin-bottom: 0.5rem;
-}
-@media only screen and (min-width: 601px) {
-  .body {
-    height: calc(100vh - 120px) !important;
-  }
 }
 
 .match-preview {

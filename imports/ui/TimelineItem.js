@@ -19,8 +19,16 @@ class TimelineItem extends Component {
     let time = this.props.event.time;
     let hours = Math.floor( time / 60);
     let minutes = time % 60;
-    return hours + ":" + minutes;
+    return this.addZero(hours) + ":" + this.addZero(minutes);
   }
+
+  addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
 
   render() {
     let event = this.props.event;
@@ -29,11 +37,7 @@ class TimelineItem extends Component {
       <div className="event col s12 grey-text darken-4">
       {
         event.actuate == "time" ? (
-          event.action == "Terminó el partido" ? (
-            <p className="time-event center-align">{event.action} ({this.convertMinutes()})</p>
-          ) : (
-            <p className="time-event center-align">{event.action}</p>
-          )
+          <p className="time-event center-align">{event.action} ({this.convertMinutes()})</p>
         ) : ('')
       }
       {
