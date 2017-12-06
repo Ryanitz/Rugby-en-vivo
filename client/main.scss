@@ -1,3 +1,5 @@
+@import '../imports/ui/accounts/accounts-templates';
+
 @media screen and (max-width: 600px) {
   #toast-container {
     bottom: 58px;
@@ -14,7 +16,7 @@
   z-index: 1;
 }
 .fixed-color {
-  color: #0000008a;
+  color: rgba(0, 0, 0, 0.5411764705882353);
 }
 
 .body {
