@@ -32,7 +32,7 @@ Meteor.methods({
       },
       startingTime: match.startingTime,
       status: "not started",
-      state: null,
+      started: false,
       timeline: [],
       public: true,
       createdAt: new Date(),
@@ -41,6 +41,7 @@ Meteor.methods({
     });
   },
   'matches.setStatus'(matchId, newStatus, newEvent) {
+    let started = (newStatus !== "not started" && newStatus !== "finished");
     const match = Matches.findOne(matchId);
     if (!match.public && match.owner !== this.userId) {
       // If the task is private, make sure only the owner can check it off
@@ -49,8 +50,8 @@ Meteor.methods({
 
     Matches.update(matchId, {
       $set: {
+        started = started,
         status: newStatus,
-        finished: (newStatus === "finished"),
         timeline: match.timeline.concat(newEvent)
       }
     });
