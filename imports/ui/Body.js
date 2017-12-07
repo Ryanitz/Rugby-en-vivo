@@ -14,7 +14,7 @@ import FontIcon from 'material-ui/FontIcon';
 const myMatches = <FontIcon className="material-icons">list</FontIcon>;
 const matches = <FontIcon className="material-icons">live_tv</FontIcon>;
 const user = <FontIcon className="material-icons">person</FontIcon>;
-const fav = <FontIcon className="material-icons">flag</FontIcon>;
+const flag = <FontIcon className="material-icons">flag</FontIcon>;
 
 class Body extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class Body extends Component {
   componentWillMount() {
     if(window.location.pathname == "/Finalizados") {
       this.setState({selectedIndex: 0});
-    } else if(window.location.pathname == "/NoEmpezado") {
+    } else if(window.location.pathname == "/Partidos") {
       this.setState({selectedIndex: 1});
     }  else if(window.location.pathname == "/Cuenta") {
       this.setState({selectedIndex: 3});
@@ -46,7 +46,7 @@ class Body extends Component {
           ) : this.state.selectedIndex === 1 ? (
             <MatchList finished={true} text="No hay ningún partido sin empezar." user={this.props.currentUser} matches={this.props.notStarted}/>
           ) : this.state.selectedIndex === 2 ? (
-            <MatchList finished={false} text="No hay partidos en este momento." user={this.props.currentUser} matches={this.props.matches}/>
+            <MatchList finished={false} text="No hay partidos en este momento." user={this.props.currentUser} matches={this.props.started}/>
           ) : this.state.selectedIndex === 3 ? (
             <Account />
           ) : ('Wrong page')
@@ -58,7 +58,7 @@ class Body extends Component {
               <BottomNavigation selectedIndex={this.state.selectedIndex}>
                 <BottomNavigationItem
                   label="Finalizados"
-                  icon={fav}
+                  icon={flag}
                   onClick={
                     () => {
                       this.select(0);
@@ -67,22 +67,22 @@ class Body extends Component {
                   }
                 />
                 <BottomNavigationItem
-                  label="No empezados"
+                  label="Partidos"
                   icon={myMatches}
                   onClick={
                     () => {
                       this.select(1);
-                      history.replaceState( {} , 'No empezados', '/NoEmpezados' );
+                      history.replaceState( {} , 'Partidos', '/Partidos' );
                     }
                   }
                 />
                 <BottomNavigationItem
-                  label="Partidos"
+                  label="Vivo"
                   icon={matches}
                   onClick={
                     () => {
                       this.select(2);
-                      history.replaceState( {} , 'Partidos', '/Partidos' );
+                      history.replaceState( {} , 'Vivo', '/Vivo' );
                     }
                   }
                 />

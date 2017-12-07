@@ -21,7 +21,7 @@ export default class TeamPanel extends Component {
 
   updateStatus() {
     if (!this.props.user) {
-      Materialize.toast('Usuario no logueado', 4000);
+      Materialize.toast('Usuario no logueado', 2000);
     } else {
       let newStatus = this.nextStatus();
       let translateStatus = this.currentStatus(newStatus);
@@ -38,14 +38,14 @@ export default class TeamPanel extends Component {
 
       Meteor.call('matches.setStatus', this.props.match._id, newStatus, newEvent);
 
-      Materialize.toast(translateStatus, 4000);
+      Materialize.toast(translateStatus, 2000);
     }
 
   }
 
   updateMatch(action, points, team, side) {
     if (!this.props.user) {
-      Materialize.toast('Usuario no logueado', 4000);
+      Materialize.toast('Usuario no logueado', 2000);
     } else {
       let update = action + " " + team;
       this.setState({
@@ -69,7 +69,7 @@ export default class TeamPanel extends Component {
         let newPoints = this.props.match.visit.points + points;
         Meteor.call('matches.setPointsVisit', this.props.match._id, newPoints, newEvent);
       }
-      Materialize.toast(update, 4000);
+      Materialize.toast(update, 2000);
     }
   }
 

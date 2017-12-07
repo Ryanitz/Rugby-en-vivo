@@ -40,7 +40,7 @@ class CreateMatchCard extends Component {
 
       Meteor.call('matches.insert', match);
 
-      Materialize.toast('Partido creado!', 4000);
+      Materialize.toast('Partido creado!', 2000);
 
       this.setState({
         local: '',
@@ -48,7 +48,7 @@ class CreateMatchCard extends Component {
       });
       document.getElementById("starting_time").value = '';
     } else {
-      Materialize.toast('Complete todos los campos', 4000);
+      Materialize.toast('Complete todos los campos', 2000);
     }
   }
 

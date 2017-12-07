@@ -8,7 +8,7 @@ class NavBar extends Component {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            <a className="left brand-logo">Logo</a>
+            <a className="center brand-logo">Logo</a>
           </div>
         </nav>
       </div>
