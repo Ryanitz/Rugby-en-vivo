@@ -37,7 +37,7 @@ Meteor.methods({
       public: true,
       createdAt: new Date(),
       owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username,
+      username: Meteor.users.findOne(this.userId).profile.name,
     });
   },
   'matches.setStatus'(matchId, newStatus, newEvent) {
@@ -50,7 +50,7 @@ Meteor.methods({
 
     Matches.update(matchId, {
       $set: {
-        started = started,
+        started: started,
         status: newStatus,
         timeline: match.timeline.concat(newEvent)
       }
