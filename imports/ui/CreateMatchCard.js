@@ -58,7 +58,7 @@ class CreateMatchCard extends Component {
         {
           !this.props.user ? (
             <div className="message col s12 card-panel indigo lighten-5 center-align hoverable flow-text">
-              {/* <span className="grey-text darken-4">Inicie sesión para crear un partido.</span> */}
+              <p className="grey-text darken-4">Inicie sesión para crear un partido.</p>
               <AccountsUIWrapper />
             </div>
           ) : (

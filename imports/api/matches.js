@@ -90,4 +90,17 @@ Meteor.methods({
       }
     });
   },
+  'matches.remove'(matchId, owner) {
+    check(matchId, String);
+    check(owner, String);
+
+    // Make sure the user is logged in before inserting a match
+    if (this.userId !== owner) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    Matches.remove({
+      _id: matchId
+    });
+  },
 });

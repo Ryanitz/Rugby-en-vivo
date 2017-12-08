@@ -14,11 +14,17 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div>
         <NavBar />
-        <Body currentUser={this.props.currentUser} started={this.props.started} finished={this.props.finished} notStarted={this.props.notStarted} />
+        <Body
+          currentUser={this.props.currentUser}
+          username={this.props.username}
+          myMatches={this.props.myMatches}
+          started={this.props.started}
+          finished={this.props.finished}
+          notStarted={this.props.notStarted}
+        />
       </div>
     );
   }

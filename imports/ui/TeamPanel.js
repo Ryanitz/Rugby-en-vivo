@@ -38,7 +38,12 @@ export default class TeamPanel extends Component {
 
       Meteor.call('matches.setStatus', this.props.match._id, newStatus, newEvent);
 
-      Materialize.toast(translateStatus, 2000);
+      if(newStatus == "first half") {
+        Materialize.toast("El partido ha sido movido a vivo", 2000);
+      } else if(newStatus == "finished") {
+        Materialize.toast("El partido ha sido movido a finalizados", 2000);  
+      }
+      //Materialize.toast(translateStatus, 2000);
     }
 
   }
@@ -69,7 +74,7 @@ export default class TeamPanel extends Component {
         let newPoints = this.props.match.visit.points + points;
         Meteor.call('matches.setPointsVisit', this.props.match._id, newPoints, newEvent);
       }
-      Materialize.toast(update, 2000);
+      //Materialize.toast(update, 2000);
     }
   }
 

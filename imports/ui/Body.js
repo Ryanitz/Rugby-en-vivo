@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import AccountsUIWrapper from './accounts/AccountsUIWrapper.js';
@@ -26,11 +27,11 @@ class Body extends Component {
     if(window.location.pathname == "/Finalizados") {
       this.setState({selectedIndex: 0});
     } else if(window.location.pathname == "/Partidos") {
-      this.setState({selectedIndex: 1});
+      this.setState({selectedIndex: 2});
     }  else if(window.location.pathname == "/Cuenta") {
       this.setState({selectedIndex: 3});
     } else {
-      this.setState({selectedIndex: 2});
+      this.setState({selectedIndex: 1});
     }
   }
 
@@ -42,13 +43,13 @@ class Body extends Component {
         <div className="container">
         {
           this.state.selectedIndex === 0 ? (
-            <MatchList finished={true} text="No se ha finalizado ningun partido." user={this.props.currentUser} matches={this.props.finished}/>
-          ) : this.state.selectedIndex === 1 ? (
-            <MatchList finished={true} text="No hay ningún partido sin empezar." user={this.props.currentUser} matches={this.props.notStarted}/>
+            <MatchList title="Finalizados" text="No se ha finalizado ningun partido." user={this.props.currentUser} matches={this.props.finished}/>
           ) : this.state.selectedIndex === 2 ? (
-            <MatchList finished={false} text="No hay partidos en este momento." user={this.props.currentUser} matches={this.props.started}/>
+            <MatchList title="Sin empezar" text="No hay ningún partido sin empezar." user={this.props.currentUser} matches={this.props.notStarted}/>
+          ) : this.state.selectedIndex === 1 ? (
+            <MatchList title="En vivo" text="No hay partidos en vivo." user={this.props.currentUser} matches={this.props.started}/>
           ) : this.state.selectedIndex === 3 ? (
-            <Account />
+            <Account text="No has creado ningun partido." user={this.props.currentUser} matches={this.props.myMatches}/>
           ) : ('Wrong page')
         }
         </div>
@@ -67,27 +68,27 @@ class Body extends Component {
                   }
                 />
                 <BottomNavigationItem
-                  label="Partidos"
-                  icon={myMatches}
-                  onClick={
-                    () => {
-                      this.select(1);
-                      history.replaceState( {} , 'Partidos', '/Partidos' );
-                    }
-                  }
-                />
-                <BottomNavigationItem
                   label="Vivo"
                   icon={matches}
                   onClick={
                     () => {
-                      this.select(2);
+                      this.select(1);
                       history.replaceState( {} , 'Vivo', '/Vivo' );
                     }
                   }
                 />
                 <BottomNavigationItem
-                  label={this.props.currentUser ? this.props.currentUser.username : "Cuenta"}
+                  label="Partidos"
+                  icon={myMatches}
+                  onClick={
+                    () => {
+                      this.select(2);
+                      history.replaceState( {} , 'Partidos', '/Partidos' );
+                    }
+                  }
+                />
+                <BottomNavigationItem
+                  label={this.props.currentUser ? this.props.currentUser.profile.name : "Cuenta"}
                   icon={user}
                   onClick={
                     () => {

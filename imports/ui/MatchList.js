@@ -14,6 +14,7 @@ class MatchList extends Component {
       <div className="row row-fixed">
       {
         this.props.matches.length > 0 ? (
+          <span className="title flow-text">{this.props.title}</span>,
           this.props.matches.map((match) =>
             <MatchPreview key={match._id} match={ match } user={this.props.user} />
           )
@@ -23,7 +24,11 @@ class MatchList extends Component {
           </div>
         )
       }
-        <CreateMatchCard user={this.props.user} />
+      {
+        window.location.pathname == "/Partidos" ? (
+          <CreateMatchCard user={this.props.user} />
+        ) : ('')
+      }
       </div>
     );
   }
