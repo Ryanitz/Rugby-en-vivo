@@ -72,7 +72,7 @@ class MatchList extends Component {
 
   render() {
     let selected_date = this.state.date;
-    
+
     let matches = function() {
       if(window.location.pathname == "/Cuenta") {
         return Matches.find({ owner: Meteor.userId() }, { sort: { matchDate: 1, startingTime: 1 } }).fetch();
@@ -91,8 +91,8 @@ class MatchList extends Component {
       <div>
       {
         window.location.pathname === "/Partidos" ? (
-          <div className="input-field col s12 left-align">
-            <input id="select_date" data-value={selected_date} type="text" className="datepicker" />
+          <div className="input-field row left-align">
+            <input id="select_date" data-value={selected_date} type="text" className="col s12 m6 l4 datepicker" />
             <label htmlFor="select_date" className="active truncate">Elegir fecha</label>
           </div>
         ) : ('')
