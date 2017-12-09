@@ -20,11 +20,6 @@ class App extends Component {
         <Body
           loading={this.props.loading}
           currentUser={this.props.currentUser}
-          username={this.props.username}
-          myMatches={this.props.myMatches}
-          started={this.props.started}
-          finished={this.props.finished}
-          notStarted={this.props.notStarted}
         />
       </div>
     );
@@ -38,9 +33,5 @@ export default withTracker(() => {
   return {
     loading,
     currentUser: Meteor.user(),
-    myMatches: Matches.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } }).fetch(),
-    started: Matches.find({started: true}, { sort: { createdAt: -1 } }).fetch(),
-    notStarted: Matches.find({ status: "not started" }, { sort: { createdAt: -1 } }).fetch(),
-    finished: Matches.find({ status: "finished" }, { sort: { createdAt: -1 } }).fetch(),
   };
 })(App);

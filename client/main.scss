@@ -6,7 +6,7 @@ nav {
 
 @media screen and (max-width: 600px) {
   #toast-container {
-    bottom: 58px;
+    bottom: 56px;
   }
   .body {
     height: calc(100vh - 112px) !important;
@@ -85,15 +85,9 @@ p.match-preview-text {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 20px;
 }
-.loading .preloader-wrapper {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  top: 0;
-  bottom: 0;
-  margin-top: auto;
-  margin-bottom: auto;
+.loading .progress {
+  top: calc(50% - 2px);
+  margin: 0;
 }

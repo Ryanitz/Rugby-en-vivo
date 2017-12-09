@@ -11,7 +11,8 @@ export default class MatchPreview extends Component {
     super(props);
 
     this.state = {
-      expand: false
+      expand: false,
+      render: true,
     }
   }
 
@@ -45,6 +46,10 @@ export default class MatchPreview extends Component {
   removeMatch(matchId) {
     Meteor.call('matches.remove', this.props.match._id, this.props.match.owner);
 
+    this.setState({
+      render: false,
+    });
+
     Materialize.toast('Partido borrado', 2000);
   }
 
@@ -54,29 +59,31 @@ export default class MatchPreview extends Component {
     let viewIcon = this.state.expand ? "expand_less" : "expand_more";
 
     return (
-      <div id={match._id} className="match-preview col s12">
-        <div className="match-preview-panel row card-panel indigo lighten-5 center-align hoverable">
-          <span type="button" className="grey-text darken-4 col s12 left-align">
-            Inicio: {match.startingTime} ({status})
-            <i onClick={() => {this.toggleExpand()}} className="material-icons grey-text darken-4 right">{viewIcon}</i>
+      this.state.render ? (
+        <div id={match._id} className="match-preview col s12">
+          <div className="match-preview-panel row card-panel indigo lighten-5 center-align hoverable">
+            <span type="button" className="grey-text darken-4 col s12 left-align">
+              {match.matchDate} {match.startingTime} {/*({status})*/}
+              <i onClick={() => {this.toggleExpand()}} className="material-icons grey-text darken-4 right">{viewIcon}</i>
+              {
+                (window.location.pathname === "/Cuenta") ? (
+                  <i onClick={() => {this.removeMatch()}} className="material-icons grey-text darken-4 right">delete</i>
+                ) : ('')
+              }
+            </span>
+            <span className="grey-text darken-4 flow-text">
+              <p className="match-preview-text col s4 m5 left-align truncate"><strong>{match.local.name}</strong></p>
+              <p className="match-preview-text col s4 m2 center-align">{match.local.points}  -  {match.visit.points}</p>
+              <p className="match-preview-text col s4 m5 right-align truncate"><strong>{match.visit.name}</strong></p>
+            </span>
             {
-              (window.location.pathname === "/Cuenta") ? (
-                <i onClick={() => {this.removeMatch()}} className="material-icons grey-text darken-4 right">delete</i>
+              this.state.expand ? (
+                <ExpandTab user={this.props.user} match={match} timeline={match.timeline} />
               ) : ('')
             }
-          </span>
-          <span className="grey-text darken-4 flow-text">
-            <p className="match-preview-text col s4 m5 left-align truncate"><strong>{match.local.name}</strong></p>
-            <p className="match-preview-text col s4 m2 center-align">{match.local.points}  -  {match.visit.points}</p>
-            <p className="match-preview-text col s4 m5 right-align truncate"><strong>{match.visit.name}</strong></p>
-          </span>
-          {
-            this.state.expand ? (
-              <ExpandTab user={this.props.user} match={match} timeline={match.timeline} />
-            ) : ('')
-          }
+          </div>
         </div>
-      </div>
+      ) : ('')
     );
   }
 }

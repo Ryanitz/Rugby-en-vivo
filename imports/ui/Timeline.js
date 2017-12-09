@@ -14,14 +14,12 @@ class Timeline extends Component {
       <div className="row">
       {
         this.props.timeline.length > 0 ? (
-          this.props.timeline.map((event) =>
-            event.action !== "Entretiempo" ? (
-              event.action === "2do tiempo" ? (
-                timeEvent = event
-              ) : (''),
-              <TimelineItem key={event.id} event={event} timeEvent={timeEvent} />
-            ) : ('')
-          )
+          this.props.timeline.map((event) => (
+            event.action === "2do tiempo" ? (
+              timeEvent = event
+            ) : (''),
+            <TimelineItem key={event.id} event={event} timeEvent={timeEvent} />
+          ))
         ) : (
           <div className="row">
             <div className="col s12">

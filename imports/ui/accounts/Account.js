@@ -18,7 +18,7 @@ class Account extends Component {
         {
           this.props.user ? (
             <div className="my-matches">
-              <MatchList title="Mis partidos" text={this.props.text} user={this.props.user} matches={this.props.matches}/>
+              <MatchList key="mis_partidos" text={this.props.text} user={this.props.user}/>
             </div>
           ) : ('')
         }
