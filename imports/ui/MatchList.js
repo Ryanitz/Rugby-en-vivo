@@ -72,7 +72,7 @@ class MatchList extends Component {
 
   render() {
     let selected_date = this.state.date;
-    console.log(selected_date);
+    
     let matches = function() {
       if(window.location.pathname == "/Cuenta") {
         return Matches.find({ owner: Meteor.userId() }, { sort: { matchDate: 1, startingTime: 1 } }).fetch();
@@ -86,7 +86,7 @@ class MatchList extends Component {
         return Matches.find({ status: "not started", matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
       }
     }
-    console.log(matches());
+
     return (
       <div>
       {

@@ -17,15 +17,11 @@ export default class MatchPreview extends Component {
   }
 
   toggleExpand() {
-    if (!this.props.user) {
-      Materialize.toast('Usuario no logueado', 2000)
-    } else {
-      let toggleExpand = !this.state.expand;
+    let toggleExpand = !this.state.expand;
 
-      this.setState({
-        expand: toggleExpand,
-      });
-    }
+    this.setState({
+      expand: toggleExpand,
+    });
   }
 
   currentStatus() {
