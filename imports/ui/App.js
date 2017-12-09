@@ -18,6 +18,7 @@ class App extends Component {
       <div>
         <NavBar />
         <Body
+          loading={this.props.loading}
           currentUser={this.props.currentUser}
           username={this.props.username}
           myMatches={this.props.myMatches}
@@ -31,9 +32,11 @@ class App extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('matches');
+  const matchesHandle = Meteor.subscribe('matches');
+  const loading = !matchesHandle.ready();
 
   return {
+    loading,
     currentUser: Meteor.user(),
     myMatches: Matches.find({ owner: Meteor.userId() }, { sort: { createdAt: -1 } }).fetch(),
     started: Matches.find({started: true}, { sort: { createdAt: -1 } }).fetch(),

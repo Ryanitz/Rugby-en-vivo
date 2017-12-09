@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AccountsUIWrapper from './accounts/AccountsUIWrapper.js';
 import MatchList from './MatchList.js';
 import Account from './accounts/Account.js';
+import Loading from './Loading.js';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -42,15 +43,19 @@ class Body extends Component {
       <div className="body">
         <div className="container">
         {
-          this.state.selectedIndex === 0 ? (
-            <MatchList title="Finalizados" text="No se ha finalizado ningun partido." user={this.props.currentUser} matches={this.props.finished}/>
-          ) : this.state.selectedIndex === 2 ? (
-            <MatchList title="Sin empezar" text="No hay ningún partido sin empezar." user={this.props.currentUser} matches={this.props.notStarted}/>
-          ) : this.state.selectedIndex === 1 ? (
-            <MatchList title="En vivo" text="No hay partidos en vivo." user={this.props.currentUser} matches={this.props.started}/>
-          ) : this.state.selectedIndex === 3 ? (
-            <Account text="No has creado ningun partido." user={this.props.currentUser} matches={this.props.myMatches}/>
-          ) : ('Wrong page')
+          this.props.loading ? (
+            <Loading />
+          ) : (
+            this.state.selectedIndex === 0 ? (
+              <MatchList title="Finalizados" text="No se ha finalizado ningun partido." user={this.props.currentUser} matches={this.props.finished}/>
+            ) : this.state.selectedIndex === 2 ? (
+              <MatchList title="Sin empezar" text="No hay ningún partido sin empezar." user={this.props.currentUser} matches={this.props.notStarted}/>
+            ) : this.state.selectedIndex === 1 ? (
+              <MatchList title="En vivo" text="No hay partidos en vivo." user={this.props.currentUser} matches={this.props.started}/>
+            ) : this.state.selectedIndex === 3 ? (
+              <Account text="No has creado ningun partido." user={this.props.currentUser} matches={this.props.myMatches}/>
+            ) : ('Wrong page')
+          )
         }
         </div>
         <div className="bottom-nav">

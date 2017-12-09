@@ -31,6 +31,7 @@ Meteor.methods({
         points: 0
       },
       startingTime: match.startingTime,
+      matchDate: match.matchDate,
       status: "not started",
       started: false,
       timeline: [],

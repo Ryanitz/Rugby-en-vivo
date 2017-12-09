@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import TimePicker from './TimePicker.js';
+import DatePicker from './DatePicker.js';
 import AccountsUIWrapper from './accounts/AccountsUIWrapper.js';
 
 import { Matches } from '../api/matches.js';
@@ -30,11 +31,12 @@ class CreateMatchCard extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    if(this.props.user && this.state.local != "" && this.state.visit != ""){
+    if(this.props.user && this.state.local !== "" && this.state.visit !== "" && document.getElementById("starting_time").value !== "" && document.getElementById("match_date").value !== ""){
       const match = {
         local: this.state.local,
         visit: this.state.visit,
         startingTime: document.getElementById("starting_time").value,
+        matchDate: document.getElementById("match_date").value,
         public: true
       };
 
@@ -47,6 +49,7 @@ class CreateMatchCard extends Component {
         visit: ''
       });
       document.getElementById("starting_time").value = '';
+      document.getElementById("match_date").value = '';
     } else {
       Materialize.toast('Complete todos los campos', 2000);
     }
@@ -70,15 +73,19 @@ class CreateMatchCard extends Component {
                       <TimePicker id="starting_time" />
                       <label htmlFor="starting_time" className="truncate">Hora de inicio</label>
                     </div>
+                    <div className="input-field col s6 offset-s3 left-align">
+                      <DatePicker id="match_date" />
+                      <label htmlFor="match_date" className="truncate">Dia del partido</label>
+                    </div>
                   </div>
                   <div className="row">
                     <div className="input-field match-preview-text col s5 left-align">
-                      <input id="local_team" placeholder="Equipo local" value={this.state.local} onChange={this.handleChange} type="text" className="validate" />
+                      <input id="local_team" value={this.state.local} onChange={this.handleChange} type="text" className="validate" />
                       <label htmlFor="local_team">Equipo local</label>
                     </div>
                     <h4 className="match-preview-text col s2 center-align">-</h4>
                     <div className="input-field match-preview-text col s5 right-align">
-                      <input id="visit_team" placeholder="Equipo visitante" value={this.state.visit} onChange={this.handleChange} type="text" className="validate" />
+                      <input id="visit_team" value={this.state.visit} onChange={this.handleChange} type="text" className="validate" />
                       <label htmlFor="visit_team">Equipo visitante</label>
                     </div>
                   </div>

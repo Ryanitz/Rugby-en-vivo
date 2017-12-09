@@ -20,7 +20,7 @@ class TimePicker extends Component {
 
   render() {
     return (
-      <input id={ this.props.id } placeholder="Hora de inicio" type="text" className="timepicker" />
+      <input id={ this.props.id } type="text" className="timepicker" />
     );
   }
 }

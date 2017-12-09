@@ -25,7 +25,7 @@ class MatchList extends Component {
         )
       }
       {
-        window.location.pathname == "/Partidos" ? (
+        window.location.pathname == "/Cuenta" ? (
           <CreateMatchCard user={this.props.user} />
         ) : ('')
       }
