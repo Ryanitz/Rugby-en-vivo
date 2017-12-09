@@ -91,7 +91,7 @@ class MatchList extends Component {
       <div>
       {
         window.location.pathname === "/Partidos" ? (
-          <div className="input-field row left-align">
+          <div className="input-field row row-fixed left-align">
             <input id="select_date" data-value={selected_date} type="text" className="col s12 m6 l4 datepicker" />
             <label htmlFor="select_date" className="active truncate">Elegir fecha</label>
           </div>
