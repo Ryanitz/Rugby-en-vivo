@@ -1,15 +1,11 @@
 @import '../imports/ui/accounts/accounts-templates';
-
-nav {
-  background-color: #3498db;
-}
+@import '../imports/ui/navBar/navBar';
+@import '../imports/ui/body/body';
+@import '../imports/ui/loading/loading';
 
 @media screen and (max-width: 600px) {
   #toast-container {
     bottom: 56px;
-  }
-  .body {
-    height: calc(100vh - 112px) !important;
   }
 }
 
@@ -21,16 +17,6 @@ nav {
 }
 .fixed-color {
   color: rgba(0, 0, 0, 0.5411764705882353);
-}
-
-.body {
-  height: calc(100vh - 120px);
-  overflow-y: auto;
-  padding-top: 5px;
-  margin-bottom: 56px;
-}
-.body .container .row-fixed {
-  margin-bottom: 5px;
 }
 
 .col {
@@ -76,20 +62,6 @@ p.match-preview-text {
 
 .message {
   padding: 20px !important;
-}
-
-.loading {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 20px;
-}
-.loading .progress {
-  top: calc(50% - 2px);
-  margin: 0;
 }
 
 #select_date {

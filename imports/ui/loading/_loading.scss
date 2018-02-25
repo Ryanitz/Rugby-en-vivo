@@ -1,0 +1,13 @@
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 20px;
+}
+.loading .progress {
+  top: calc(50% - 2px);
+  margin: 0;
+}

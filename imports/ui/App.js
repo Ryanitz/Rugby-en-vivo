@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import NavBar from './NavBar.js';
-import Body from './Body.js';
+import NavBar from './navBar/NavBar.js';
+import Body from './body/Body.js';
 
 import { Matches } from '../api/matches.js';
 

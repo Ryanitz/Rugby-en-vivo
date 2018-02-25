@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import AccountsUIWrapper from './accounts/AccountsUIWrapper.js';
-import MatchList from './MatchList.js';
-import Account from './accounts/Account.js';
-import Loading from './Loading.js';
+import AccountsUIWrapper from '../accounts/AccountsUIWrapper.js';
+import MatchList from '../MatchList.js';
+import Account from '../accounts/Account.js';
+import Loading from '../loading/Loading.js';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

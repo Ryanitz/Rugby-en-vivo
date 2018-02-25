@@ -13,7 +13,7 @@ class TimePicker extends Component {
       donetext: 'OK', // text for done-button
       cleartext: 'Borrar', // text for clear-button
       canceltext: 'Cancelar', // Text for cancel-button
-      autoclose: false, // automatic close timepicker
+      autoclose: true, // automatic close timepicker
       ampmclickable: true // make AM PM clickable
     });
   }

@@ -1,0 +1,16 @@
+@media screen and (max-width: 600px) {
+  .body {
+    height: calc(100vh - 112px) !important;
+  }
+}
+
+.body {
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-top: 5px;
+  margin-bottom: 56px;
+}
+
+.body .container .row-fixed {
+  margin-bottom: 5px;
+}

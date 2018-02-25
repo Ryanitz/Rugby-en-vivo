@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import MatchPreview from './MatchPreview.js';
 import CreateMatchCard from './CreateMatchCard.js';
-import Loading from './Loading.js';
+import Loading from './loading/Loading.js';
 
 import { Matches } from '../api/matches.js';
 
@@ -29,12 +29,14 @@ class MatchList extends Component {
       date: date
     };
 
-    Meteor.subscribe('matches');
-
     this.changeDate = this.changeDate.bind(this);
   }
 
   componentDidMount() {
+    let minDate = this.state.date;
+    if(window.location.pathname === "/Finalizados") {
+      minDate = false;
+    }
     $('#select_date').pickadate({
       selectMonths: false,//Creates a dropdown to control month
       selectYears: false,//Creates a dropdown of 15 years to control year
@@ -56,7 +58,7 @@ class MatchList extends Component {
       clear: 'Borrar',
       close: 'Ok',
       format: 'yyyy/mm/dd',
-      min: this.state.date,
+      min: minDate,
       closeOnSelect: true, // Close upon selecting a date,
       onClose: this.changeDate,
     });
@@ -81,7 +83,7 @@ class MatchList extends Component {
       } else if(window.location.pathname == "/Partidos") {
         return Matches.find({ status: "not started", matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
       } else if(window.location.pathname == "/Finalizados") {
-        return Matches.find({ status: "finished" }, { sort: { startingTime: 1 } }).fetch();
+        return Matches.find({ status: "finished", matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
       } else {
         return Matches.find({ status: "not started", matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
       }
@@ -90,7 +92,7 @@ class MatchList extends Component {
     return (
       <div>
       {
-        window.location.pathname === "/Partidos" ? (
+        window.location.pathname === "/Partidos" || window.location.pathname === "/Finalizados" ? (
           <div className="input-field row row-fixed left-align">
             <input id="select_date" data-value={selected_date} type="text" className="col s12 m6 l4 datepicker" />
             <label htmlFor="select_date" className="active truncate">Elegir fecha</label>
@@ -130,21 +132,30 @@ export default MatchList = withTracker(() => {
   let matchesHandle = Meteor.subscribe('matches');
   let loading = !matchesHandle.ready();
 
-  let today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth()+1; //January is 0!
-
-  let yyyy = today.getFullYear();
-  if(dd<10){
-      dd='0'+dd;
+  if(window.location.pathname == "/Cuenta") {
+    return {
+      loading,
+      matches: Matches.find({ owner: Meteor.userId() }, { sort: { matchDate: 1, startingTime: 1 } }).fetch(),
+    };
+  } else if(window.location.pathname == "/Vivo") {
+    return {
+      loading,
+      matches: Matches.find({ started: true }, { sort: { startingTime: 1 } }).fetch(),
+    };
+  } else if(window.location.pathname == "/Partidos") {
+    return {
+      loading,
+      matches: Matches.find({ status: "not started" }, { sort: { startingTime: 1 } }).fetch(),
+    };
+  } else if(window.location.pathname == "/Finalizados") {
+    return {
+      loading,
+      matches: Matches.find({ status: "finished" }, { sort: { startingTime: 1 } }).fetch(),
+    };
+  } else {
+    return {
+      loading,
+      matches: Matches.find({ status: "not started" }, { sort: { startingTime: 1 } }).fetch(),
+    };
   }
-  if(mm<10){
-      mm='0'+mm;
-  }
-  let date = yyyy + '/' + mm + '/' + dd;
-
-  return {
-    loading,
-    matches: Matches.find().fetch(),
-  };
 })(MatchList);
