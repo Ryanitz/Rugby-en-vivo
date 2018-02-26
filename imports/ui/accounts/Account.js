@@ -12,7 +12,7 @@ class Account extends Component {
   render() {
     return (
       <div>
-        <div className="row row-fixed message col s12 card-panel indigo lighten-5 center-align hoverable flow-text">
+        <div className="row row-fixed message col s12 card-panel indigo lighten-5 center-align flow-text">
           <AccountsUIWrapper />
         </div>
         {

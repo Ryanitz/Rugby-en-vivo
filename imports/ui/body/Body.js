@@ -25,14 +25,12 @@ class Body extends Component {
   }
 
   componentWillMount() {
-    if(window.location.pathname == "/Finalizados") {
-      this.setState({selectedIndex: 0});
-    } else if(window.location.pathname == "/Partidos") {
-      this.setState({selectedIndex: 2});
-    }  else if(window.location.pathname == "/Cuenta") {
-      this.setState({selectedIndex: 3});
-    } else {
+    if(window.location.pathname == "/Partidos") {
       this.setState({selectedIndex: 1});
+    }  else if(window.location.pathname == "/Cuenta") {
+      this.setState({selectedIndex: 2});
+    } else {
+      this.setState({selectedIndex: 0});
     }
   }
 
@@ -46,13 +44,11 @@ class Body extends Component {
           this.props.loading ? (
             <Loading />
           ) : (
-            this.state.selectedIndex === 0 ? (
-              <MatchList key="finalizados" text="No se ha finalizado ningun partido." user={this.props.currentUser}/>
-            ) : this.state.selectedIndex === 2 ? (
-              <MatchList key="sin_empezar" text="No hay ningún partido sin empezar." user={this.props.currentUser}/>
-            ) : this.state.selectedIndex === 1 ? (
+            this.state.selectedIndex === 1 ? (
+              <MatchList key="sin_empezar" text="No hay ningún partido es esta fecha." user={this.props.currentUser}/>
+            ) : this.state.selectedIndex === 0 ? (
               <MatchList key="en_vivo" text="No hay partidos en vivo." user={this.props.currentUser}/>
-            ) : this.state.selectedIndex === 3 ? (
+            ) : this.state.selectedIndex === 2 ? (
               <Account text="No has creado ningun partido." user={this.props.currentUser}/>
             ) : ('Wrong page')
           )
@@ -63,21 +59,11 @@ class Body extends Component {
             <Paper zDepth={1}>
               <BottomNavigation selectedIndex={this.state.selectedIndex}>
                 <BottomNavigationItem
-                  label="Finalizados"
-                  icon={flag}
-                  onClick={
-                    () => {
-                      this.select(0);
-                      history.replaceState( {} , 'Finalizados', '/Finalizados' );
-                    }
-                  }
-                />
-                <BottomNavigationItem
                   label="Vivo"
                   icon={matches}
                   onClick={
                     () => {
-                      this.select(1);
+                      this.select(0);
                       history.replaceState( {} , 'Vivo', '/Vivo' );
                     }
                   }
@@ -87,7 +73,7 @@ class Body extends Component {
                   icon={myMatches}
                   onClick={
                     () => {
-                      this.select(2);
+                      this.select(1);
                       history.replaceState( {} , 'Partidos', '/Partidos' );
                     }
                   }
@@ -97,7 +83,7 @@ class Body extends Component {
                   icon={user}
                   onClick={
                     () => {
-                      this.select(3);
+                      this.select(2);
                       history.replaceState( {} , 'Cuenta', '/Cuenta' );
                     }
                   }

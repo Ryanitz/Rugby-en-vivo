@@ -57,9 +57,18 @@ export default class MatchPreview extends Component {
     return (
       this.state.render ? (
         <div id={match._id} className="match-preview col s12">
-          <div className="match-preview-panel row card-panel indigo lighten-5 center-align hoverable">
+          <div className="match-preview-panel row card-panel indigo lighten-5 center-align">
             <span type="button" className="grey-text darken-4 col s12 left-align">
-              {match.matchDate} {match.startingTime} {/*({status})*/}
+              {match.matchDate} {match.startingTime} {
+                match.started ? (
+                  <a className="live-text">VIVO</a>
+                ) : ('')
+              }
+              {
+                match.status === "finished" ? (
+                  <i className="material-icons grey-text darken-4 end-flag">flag</i>
+                ) : ('')
+              }
               <i onClick={() => {this.toggleExpand()}} className="material-icons grey-text darken-4 right">{viewIcon}</i>
               {
                 (window.location.pathname === "/Cuenta") ? (

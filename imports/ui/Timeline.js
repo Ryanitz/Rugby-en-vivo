@@ -23,7 +23,7 @@ class Timeline extends Component {
         ) : (
           <div className="row">
             <div className="col s12">
-              <div className="card-panel indigo lighten-5 center-align hoverable flow-text">
+              <div className="card-panel indigo lighten-5 center-align flow-text">
                 <span className="grey-text darken-4">No ha comenzado el partido.</span>
               </div>
             </div>

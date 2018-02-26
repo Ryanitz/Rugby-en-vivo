@@ -3,9 +3,46 @@
 @import '../imports/ui/body/body';
 @import '../imports/ui/loading/loading';
 
+/*Animations*/
+
+@keyframes twinkle {
+  0%   {opacity: 1;}
+  50%  {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes spin {
+  0%   {transform: rotate(-20deg);}
+  100%  {transform: rotate(380deg);}
+}
+
+/*End animations*/
+
+.brand-logo img {
+  margin: 5px;
+  width: 54px;
+  height: 54px;
+  transition: transform 0.5s;
+  transform: rotate(0deg);
+}
+
+.brand-logo img:hover {
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-delay: 0.5s;
+  animation-iteration-count: infinite;
+  transform: rotate(-20deg);
+}
+
 @media screen and (max-width: 600px) {
   #toast-container {
     bottom: 56px;
+  }
+
+  .brand-logo img {
+    width: 46px;
+    height: 46px;
   }
 }
 
@@ -15,6 +52,11 @@
   bottom: 0;
   z-index: 1;
 }
+
+.bottom-nav div div {
+  background-color: rgb(218, 218, 218) !important;
+}
+
 .fixed-color {
   color: rgba(0, 0, 0, 0.5411764705882353);
 }
@@ -53,11 +95,18 @@ p.match-preview-text {
   overflow: hidden;
   background-color: transparent;
 }
+
+.time-event {
+  margin: auto !important;
+  width: 200px;
+  background: #b2bec3;
+  padding: 0.5px 10px;
+  border-radius: 10px;
+  color: #636e72;
+}
+
 .event p {
   margin: 0px;
-}
-.time-event {
-  border-top: solid 1px;
 }
 
 .message {
@@ -66,4 +115,21 @@ p.match-preview-text {
 
 #select_date {
   margin: 0;
+}
+
+@keyframes twinkle {
+  0%   {opacity: 1;}
+  50%  {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.live-text {
+  animation-name: twinkle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+.end-flag {
+  font-size: 20px;
+  vertical-align: sub;
 }

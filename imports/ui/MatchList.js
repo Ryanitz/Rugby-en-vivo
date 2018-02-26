@@ -34,7 +34,7 @@ class MatchList extends Component {
 
   componentDidMount() {
     let minDate = this.state.date;
-    if(window.location.pathname === "/Finalizados") {
+    if(window.location.pathname === "/Vivo" || window.location.pathname !== "/Cuenta") {
       minDate = false;
     }
     $('#select_date').pickadate({
@@ -81,18 +81,16 @@ class MatchList extends Component {
       } else if(window.location.pathname == "/Vivo") {
         return Matches.find({ started: true }, { sort: { startingTime: 1 } }).fetch();
       } else if(window.location.pathname == "/Partidos") {
-        return Matches.find({ status: "not started", matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
-      } else if(window.location.pathname == "/Finalizados") {
-        return Matches.find({ status: "finished", matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
+        return Matches.find({ public: true, matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
       } else {
-        return Matches.find({ status: "not started", matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
+        return Matches.find({ public: true, matchDate: selected_date }, { sort: { startingTime: 1 } }).fetch();
       }
     }
 
     return (
       <div>
       {
-        window.location.pathname === "/Partidos" || window.location.pathname === "/Finalizados" ? (
+        window.location.pathname === "/Partidos" ? (
           <div className="input-field row row-fixed left-align">
             <input id="select_date" data-value={selected_date} type="text" className="col s12 m6 l4 datepicker" />
             <label htmlFor="select_date" className="active truncate">Elegir fecha</label>
@@ -110,7 +108,7 @@ class MatchList extends Component {
                 <MatchPreview key={match._id} match={ match } user={this.props.user} />
               )
             ) : (
-              <div className="message col s12 card-panel indigo lighten-5 center-align hoverable flow-text">
+              <div className="message col s12 card-panel indigo lighten-5 center-align flow-text">
                 <span className="grey-text darken-4">{this.props.text}</span>
               </div>
             )
@@ -145,17 +143,12 @@ export default MatchList = withTracker(() => {
   } else if(window.location.pathname == "/Partidos") {
     return {
       loading,
-      matches: Matches.find({ status: "not started" }, { sort: { startingTime: 1 } }).fetch(),
-    };
-  } else if(window.location.pathname == "/Finalizados") {
-    return {
-      loading,
-      matches: Matches.find({ status: "finished" }, { sort: { startingTime: 1 } }).fetch(),
+      matches: Matches.find({ public: true }, { sort: { startingTime: 1 } }).fetch(),
     };
   } else {
     return {
       loading,
-      matches: Matches.find({ status: "not started" }, { sort: { startingTime: 1 } }).fetch(),
+      matches: Matches.find({ public: true }, { sort: { startingTime: 1 } }).fetch(),
     };
   }
 })(MatchList);

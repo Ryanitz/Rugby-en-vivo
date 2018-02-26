@@ -43,7 +43,7 @@ export default class ExpandTab extends Component {
               ) : (
                 <div className="row">
                   <div className="col s12">
-                    <div className="card-panel indigo lighten-5 center-align hoverable flow-text">
+                    <div className="card-panel indigo lighten-5 center-align flow-text">
                       <span className="grey-text darken-4">El partido ya terminó.</span>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ export default class ExpandTab extends Component {
           ) : (
             <div className="row">
               <div className="col s12">
-                <div className="card-panel indigo lighten-5 center-align hoverable flow-text">
+                <div className="card-panel indigo lighten-5 center-align flow-text">
                   <span className="grey-text darken-4">El partido no empezó.</span>
                 </div>
               </div>

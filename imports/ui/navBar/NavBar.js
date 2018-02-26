@@ -6,7 +6,9 @@ class NavBar extends Component {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            <a className="center brand-logo">Logo</a>
+            <a className="center brand-logo">
+              <img src="/img/logo.png" />
+            </a>
           </div>
         </nav>
       </div>
