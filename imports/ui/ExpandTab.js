@@ -27,29 +27,17 @@ export default class ExpandTab extends Component {
         <div className="col s12">
           <ul className="match-preview-tabs tabs tabs-fixed-width">
           {
-            this.props.user ? (
-              <li className="tab"><a className="active" href={"#panel_" + match._id}>Panel</a></li>
+            (this.props.user && match.status !== "finished") ? (
+              <li className="tab"><a href={"#panel_" + match._id}>Panel</a></li>
             ) : ('')
           }
-            <li className="tab"><a href={"#timeline_" + match._id}>Timeline</a></li>
+            <li className="tab"><a className="active" href={"#timeline_" + match._id}>Timeline</a></li>
           </ul>
         </div>
         {
-          this.props.user ? (
+          (this.props.user && match.status !== "finished") ? (
             <div id={"panel_" + match._id} className="col s12">
-            {
-              match.status !== 'finished' ? (
-                <TeamPanel user={this.props.user} match={match}/>
-              ) : (
-                <div className="row">
-                  <div className="col s12">
-                    <div className="card-panel indigo lighten-5 center-align flow-text">
-                      <span className="grey-text darken-4">El partido ya terminó.</span>
-                    </div>
-                  </div>
-                </div>
-              )
-            }
+              <TeamPanel user={this.props.user} match={match}/>
             </div>
           ) : ('')
         }

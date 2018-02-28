@@ -87,11 +87,15 @@ class MatchList extends Component {
       }
     }
 
+    let rand = Math.random() * 10;
+    let randomImage = "img/notfound/notfound" + (rand - rand % 1) + ".gif";
+
+
     return (
       <div>
       {
         window.location.pathname === "/Partidos" ? (
-          <div className="input-field row row-fixed left-align">
+          <div className="input-field row row-fixed right-align">
             <input id="select_date" data-value={selected_date} type="text" className="col s12 m6 l4 datepicker" />
             <label htmlFor="select_date" className="active truncate">Elegir fecha</label>
           </div>
@@ -109,7 +113,8 @@ class MatchList extends Component {
               )
             ) : (
               <div className="message col s12 card-panel indigo lighten-5 center-align flow-text">
-                <span className="grey-text darken-4">{this.props.text}</span>
+                <span className="grey-text darken-4 col s12">{this.props.text}</span>
+                <img className="not-found col s12" src={randomImage} />
               </div>
             )
           }
